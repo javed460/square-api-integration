@@ -35,9 +35,7 @@ public class SquarePaymentService {
         try {
             CreatePaymentResponse payment = paymentsApi.createPayment(createPaymentRequest);
             return payment.getPayment().getId();
-        } catch (ApiException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (ApiException | IOException e) {
             throw new RuntimeException(e);
         }
     }
