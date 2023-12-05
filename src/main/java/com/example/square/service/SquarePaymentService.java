@@ -16,7 +16,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class SquarePaymentService {
 
-    public String createPayment() {
+    public String createPayment(Long amount) {
         SquareClient squareClient = new SquareClient.Builder()
                 .accessToken("YOUR_ACCESS_TOKEN")
                 .environment(Environment.SANDBOX)
@@ -27,7 +27,7 @@ public class SquarePaymentService {
         CreatePaymentRequest createPaymentRequest = new CreatePaymentRequest
                 .Builder("SOURCE_ID", "YOUR_IDEMPOTENCY_KEY")
                 .amountMoney(new Money.Builder()
-                        .amount(100L)
+                        .amount(amount)
                         .currency("USD")
                         .build())
                 .build();
