@@ -1,5 +1,6 @@
 package com.example.square.service;
 
+import com.example.square.config.SquareConfiguration;
 import com.squareup.square.Environment;
 import com.squareup.square.SquareClient;
 import com.squareup.square.api.PaymentsApi;
@@ -15,10 +16,11 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class SquarePaymentService {
+    private final SquareConfiguration squareConfiguration;
 
     public String createPayment(Long amount) {
         SquareClient squareClient = new SquareClient.Builder()
-                .accessToken("YOUR_ACCESS_TOKEN")
+                .accessToken(squareConfiguration.getAccessToken())
                 .environment(Environment.SANDBOX)
                 .build();
 
